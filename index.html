@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenClean</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+
+      <header>
+        <div class="logo">
+          <img src="/logo.svg" alt="GreenClean" />
+          <h1>Green<span>Clean</span></h1>
+        </div>
+        <div class="header-actions" id="header-actions">
+          <button id="btn-open-settings" class="btn-ghost">Configurações</button>
+          <button id="btn-login" class="btn-primary">Conectar</button>
+        </div>
+      </header>
+
+      <main>
+        <!-- Account Mismatch Alert -->
+        <div class="card alert-card hidden" id="tab-account-alert">
+          <div class="alert-body">
+            <p class="alert-title">Trocar para <span id="detected-email">...</span>?</p>
+            <p class="alert-desc">Detectamos esta conta na aba atual.</p>
+          </div>
+          <button id="btn-switch-detected" class="btn-primary btn-small">Trocar conta</button>
+        </div>
+
+        <!-- Stats + Actions Card -->
+        <div class="card" id="dashboard">
+          <p class="dashboard-hint" id="dashboard-hint">Conecte sua conta e clique em Analisar caixa para iniciar.</p>
+          <div class="stats-grid hidden" id="stats-grid">
+            <div class="stat-item">
+              <span class="stat-label">Total na caixa</span>
+              <span class="stat-value" id="stat-total">—</span>
+            </div>
+            <div class="stat-item danger">
+              <span class="stat-label">Para remover</span>
+              <span class="stat-value" id="stat-to-delete">—</span>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button id="btn-scan" class="btn-secondary" disabled>Analisar caixa</button>
+            <button id="btn-clean" class="btn-danger" disabled>Excluir selecionados</button>
+            <button id="btn-cancel-scan" class="btn-ghost hidden">Cancelar análise</button>
+          </div>
+          <div id="post-clean-actions" class="actions hidden">
+            <button id="btn-back-home" class="btn-ghost">Voltar ao início</button>
+            <button id="btn-rescan" class="btn-secondary">Reanalisar</button>
+          </div>
+
+          <div class="progress-container hidden" id="scan-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <p id="progress-status">Inicializando...</p>
+          </div>
+        </div>
+
+        <!-- Category Cards (checkboxes) -->
+        <div id="category-cards" class="hidden"></div>
+
+        <!-- Subscription Alert -->
+        <div class="card alert-card hidden" id="subscription-alert">
+          <div class="alert-body">
+            <p class="alert-title"><span id="sub-count">0</span> assinaturas detectadas</p>
+            <p class="alert-desc">Revise e cancele inscrições de listas.</p>
+          </div>
+          <button id="btn-view-subs" class="btn-ghost btn-small">Ver lista</button>
+        </div>
+
+        <!-- Summary Table -->
+        <div class="card result-card hidden" id="email-preview">
+          <table>
+            <thead>
+              <tr><th>Categoria</th><th>Quantidade</th></tr>
+            </thead>
+            <tbody id="email-items"></tbody>
+          </table>
+        </div>
+      </main>
+
+      <footer>
+        <div class="footer-accent"></div>
+        <p>GreenClean — Software livre (AGPL) · Gestão sustentável da caixa de entrada</p>
+      </footer>
+
+    </div><!-- /#app -->
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Plano e IA</h3>
+
+        <div class="form-group">
+          <label for="plan-mode">Como deseja usar a extensão</label>
+          <select id="plan-mode" class="input-select">
+            <option value="free">Gratuito — só análise heurística (100% local, sem chaves)</option>
+            <option value="cloud">IA na nuvem (assinatura / token do site)</option>
+            <option value="advanced">Avançado — chave de API própria ou Ollama (desenvolvedores / auto-hospedado)</option>
+          </select>
+        </div>
+
+        <div id="cloud-panel" class="form-group cloud-panel hidden">
+          <p class="small-text">A classificação por IA paga roda no <strong>servidor GreenClean</strong>. Você não coloca chave de OpenAI/Anthropic na loja; só o token que recebeu ao assinar.</p>
+          <label for="cloud-api-base">URL base da API (servidor)</label>
+          <input type="url" id="cloud-api-base" placeholder="https://api.seudominio.com" autocomplete="off">
+          <label for="cloud-token" class="mt-8">Token de sessão (Bearer)</label>
+          <input type="password" id="cloud-token" placeholder="Cole o token do painel da sua conta" autocomplete="off">
+          <a id="cloud-subscribe-link" class="link-inline" href="#" target="_blank" rel="noopener">Obter acesso / assinar</a>
+        </div>
+
+        <div id="advanced-panel" class="advanced-panel hidden">
+          <p class="small-text">Uso em máquina local ou com suas próprias chaves. Não distribua isso no binário pago; ideal para repositório clonado.</p>
+          <div class="form-group">
+            <label for="provider-select">Provedor</label>
+            <select id="provider-select" class="input-select">
+              <!-- Preenchido no JS -->
+            </select>
+          </div>
+          <div class="form-group" id="api-key-group">
+            <label for="api-key">Chave de API</label>
+            <input type="password" id="api-key" placeholder="Chave do provedor" autocomplete="off">
+          </div>
+          <div class="form-group" id="model-row">
+            <label for="model-input">Modelo <span class="label-hint">(opcional)</span></label>
+            <input type="text" id="model-input" placeholder="ex: gpt-4o-mini, llama3">
+          </div>
+          <div class="form-group hidden" id="ollama-url-row">
+            <label for="ollama-url">URL do Ollama</label>
+            <input type="text" id="ollama-url" placeholder="http://127.0.0.1:11434">
+          </div>
+        </div>
+
+        <div class="form-group" id="ai-privacy-group">
+          <label class="check-row">
+            <input type="checkbox" id="ai-send-snippet" checked>
+            <span>Enviar trecho (snippet) para a IA, quando ativa</span>
+          </label>
+          <label class="check-row">
+            <input type="checkbox" id="ai-mask-sensitive" checked>
+            <span>Mascarar e-mails e domínios antes do envio</span>
+          </label>
+        </div>
+
+        <p class="small-text" id="settings-hint-bottom">Dados de API avançada ficam só neste navegador.</p>
+
+        <div class="modal-actions">
+          <button id="btn-close-settings" class="btn-ghost">Cancelar</button>
+          <button id="btn-save-settings" class="btn-primary">Salvar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subscriptions Modal -->
+    <div id="subs-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Assinaturas de listas</h3>
+        <p class="small-text">Selecione para cancelar automaticamente e mover para a lixeira. Links HTTP são visitados em abas de segundo plano; links mailto são enviados via Gmail.</p>
+        <div class="form-group">
+          <label class="check-row">
+            <input type="checkbox" id="subs-select-all" checked>
+            <span>Selecionar todas</span>
+          </label>
+          <label class="check-row">
+            <input type="checkbox" id="subs-use-general-unsub" checked>
+            <span>Aplicar método geral de unsubscribe (HTTP + mailto)</span>
+          </label>
+          <label class="check-row">
+            <input type="checkbox" id="subs-trash-after" checked>
+            <span>Mover e-mails selecionados para lixeira</span>
+          </label>
+        </div>
+        <div class="subs-list" id="subs-list"></div>
+        <div class="modal-actions">
+          <button id="btn-close-subs" class="btn-ghost">Fechar</button>
+          <button id="btn-trash-subs" class="btn-danger">Lixeira selecionados</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

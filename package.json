@@ -1,0 +1,19 @@
+{
+  "name": "evapora",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "postbuild": "node scripts/prepare-extension.mjs",
+    "preview": "vite preview",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "vite": "^8.0.9"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1"
+  }
+}
