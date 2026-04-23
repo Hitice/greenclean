@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "GreenClean",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Limpe sua caixa de entrada do Gmail com mais controle.",
   "permissions": [
     "identity",
@@ -46,7 +46,7 @@
     }
   ],
   "oauth2": {
-    "client_id": "79543969850-2du15ipev8tcrdfq5ggua30ol1qg5hi2.apps.googleusercontent.com",
+    "client_id": "532352647688-p5ni6sth56gj7f6vd627h84rafjt4mjt.apps.googleusercontent.com",
     "scopes": [
       "https://www.googleapis.com/auth/gmail.modify"
     ]
