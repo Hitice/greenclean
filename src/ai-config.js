@@ -7,8 +7,8 @@ export const PLAN_MODES = {
   advanced: { id: 'advanced', label: 'Avançado — chave própria ou Ollama local' },
 };
 
-/** Base de API de nuvem padrão (vazio: usuário preenche após assinar). */
-export const DEFAULT_CLOUD_API_BASE = '';
+/** Base de API de nuvem padrão (Railway produção). O utilizador pode alterar nas definições. */
+export const DEFAULT_CLOUD_API_BASE = 'https://greenclean-production.up.railway.app';
 
 /** Link do site para assinatura / obter token (altere no fork). */
 export const CLOUD_SUBSCRIBE_URL = 'https://example.com/assine';
