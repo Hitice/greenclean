@@ -25,3 +25,6 @@ dist-ssr
 
 # Railway CLI (ligação local; não versionar)
 .railway
+
+# Google OAuth client downloads
+client_secret_*.json
