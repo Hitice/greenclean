@@ -1,0 +1,440 @@
+{
+  "extName": {
+    "message": "GreenClean"
+  },
+  "extDescription": {
+    "message": "Revise e limpe sua caixa de entrada do Gmail: e-mails descartáveis, assinaturas e descadastro, com IA opcional."
+  },
+  "btnSettings": {
+    "message": "Configurações"
+  },
+  "btnConnect": {
+    "message": "Conectar"
+  },
+  "switchToAccount": {
+    "message": "Trocar para $1?"
+  },
+  "tabAccountDesc": {
+    "message": "Detectamos esta conta na aba atual."
+  },
+  "btnSwitchAccount": {
+    "message": "Trocar conta"
+  },
+  "hintConnectToStart": {
+    "message": "Conecte sua conta e clique em Analisar caixa para iniciar."
+  },
+  "statTotal": {
+    "message": "Total na caixa"
+  },
+  "statToDelete": {
+    "message": "Para remover"
+  },
+  "btnScan": {
+    "message": "Analisar caixa"
+  },
+  "btnReviewTrash": {
+    "message": "Revisar e limpar"
+  },
+  "btnCancelScan": {
+    "message": "Cancelar análise"
+  },
+  "btnBackHome": {
+    "message": "Voltar ao início"
+  },
+  "btnRescan": {
+    "message": "Reanalisar"
+  },
+  "progressInit": {
+    "message": "Inicializando..."
+  },
+  "subscriptionsDetected": {
+    "message": "$1 assinaturas detectadas"
+  },
+  "subsAlertDesc": {
+    "message": "Revise e cancele inscrições de listas."
+  },
+  "btnViewList": {
+    "message": "Ver lista"
+  },
+  "thCategory": {
+    "message": "Categoria"
+  },
+  "thCount": {
+    "message": "Quantidade"
+  },
+  "footer": {
+    "message": "GreenClean · Software livre (AGPL-3.0)"
+  },
+  "settingsTitle": {
+    "message": "Plano e IA"
+  },
+  "planModeLabel": {
+    "message": "Como deseja usar a extensão"
+  },
+  "planFree": {
+    "message": "Gratuito: só análise heurística (local, sem chaves)"
+  },
+  "planCloud": {
+    "message": "IA na nuvem: seu servidor GreenClean"
+  },
+  "planAdvanced": {
+    "message": "Avançado: chave de API própria ou Ollama"
+  },
+  "cloudPanelDesc": {
+    "message": "A classificação roda num servidor da API GreenClean hospedado por você (veja o README). Informe a URL e o token emitido por ele."
+  },
+  "cloudUrlLabel": {
+    "message": "URL base do servidor (HTTPS)"
+  },
+  "cloudUrlPlaceholder": {
+    "message": "https://greenclean.example.com"
+  },
+  "cloudTokenLabel": {
+    "message": "Token de acesso (Bearer)"
+  },
+  "cloudTokenPlaceholder": {
+    "message": "Token emitido pelo seu servidor"
+  },
+  "cloudSubscribe": {
+    "message": "Obter acesso"
+  },
+  "advancedPanelDesc": {
+    "message": "Sua chave fica só neste navegador e só é enviada ao provedor escolhido."
+  },
+  "providerLabel": {
+    "message": "Provedor"
+  },
+  "apiKeyLabel": {
+    "message": "Chave de API"
+  },
+  "apiKeyPlaceholder": {
+    "message": "Chave do provedor"
+  },
+  "modelLabel": {
+    "message": "Modelo"
+  },
+  "optionalHint": {
+    "message": "(opcional)"
+  },
+  "modelPlaceholder": {
+    "message": "ex.: gpt-4o-mini, llama3"
+  },
+  "ollamaUrlLabel": {
+    "message": "URL do Ollama"
+  },
+  "aiSendSnippet": {
+    "message": "Enviar trecho (snippet) para a IA, quando ativa"
+  },
+  "aiMaskSensitive": {
+    "message": "Mascarar e-mails e domínios antes do envio"
+  },
+  "settingsHintFree": {
+    "message": "Plano grátis: tudo ocorre no seu computador, sem chaves de API."
+  },
+  "settingsHintCloud": {
+    "message": "Assunto e trecho das mensagens não classificadas são enviados ao servidor que você configurou."
+  },
+  "settingsHintAdvanced": {
+    "message": "Assunto e trecho das mensagens não classificadas são enviados ao provedor escolhido."
+  },
+  "btnCancel": {
+    "message": "Cancelar"
+  },
+  "btnSave": {
+    "message": "Salvar"
+  },
+  "subsTitle": {
+    "message": "Assinaturas de listas"
+  },
+  "subsDesc": {
+    "message": "Selecione remetentes para cancelar a inscrição e mover para a lixeira. Links HTTP são abertos em abas de segundo plano; links mailto são enviados pelo Gmail."
+  },
+  "subsSelectAll": {
+    "message": "Selecionar todas"
+  },
+  "subsUseGeneralUnsub": {
+    "message": "Cancelar inscrição (HTTP e mailto)"
+  },
+  "subsTrashAfter": {
+    "message": "Mover os e-mails selecionados para a lixeira"
+  },
+  "btnClose": {
+    "message": "Fechar"
+  },
+  "btnTrashSelected": {
+    "message": "Mover para a lixeira"
+  },
+  "btnDone": {
+    "message": "Concluído"
+  },
+  "unknownSender": {
+    "message": "(remetente desconhecido)"
+  },
+  "unidentifiedSenders": {
+    "message": "Remetentes não identificados"
+  },
+  "previewTitle": {
+    "message": "Revise antes de mover para a lixeira"
+  },
+  "previewDesc": {
+    "message": "Estas mensagens serão movidas para a lixeira do Gmail, não excluídas definitivamente. O Gmail esvazia a lixeira após 30 dias. Desmarque o que quiser manter."
+  },
+  "previewSelectAll": {
+    "message": "Selecionar todos"
+  },
+  "previewCount": {
+    "message": "$1 de $2 selecionados"
+  },
+  "btnConfirmTrash": {
+    "message": "Mover $1 para a lixeira"
+  },
+  "previewNoDetails": {
+    "message": "(detalhes não salvos)"
+  },
+  "noSubject": {
+    "message": "(sem assunto)"
+  },
+  "accountConnectedNoProfile": {
+    "message": "conectado"
+  },
+  "accountConnectedNoProfileTitle": {
+    "message": "Conectado via OAuth. Perfil indisponível, mas Gmail autorizado."
+  },
+  "hintConnectedNoProfile": {
+    "message": "Conectado sem perfil visível. Você já pode analisar a caixa."
+  },
+  "connectTitle": {
+    "message": "Clique para conectar sua conta Gmail"
+  },
+  "hintConnectToEnable": {
+    "message": "Conecte sua conta para habilitar a análise."
+  },
+  "accountTitle": {
+    "message": "Conectado como $1. Clique para trocar de conta."
+  },
+  "hintReady": {
+    "message": "Pronto para analisar. Os contadores aparecem quando a varredura iniciar."
+  },
+  "hintAccountCheckFailed": {
+    "message": "Falha ao verificar a conta. Tente conectar novamente."
+  },
+  "btnSwitching": {
+    "message": "Trocando..."
+  },
+  "btnConnecting": {
+    "message": "Conectando..."
+  },
+  "errOAuthNoAccess": {
+    "message": "OAuth autenticou, mas o Gmail não respondeu com acesso válido."
+  },
+  "errAuthTokenUnavailable": {
+    "message": "Token de autenticação indisponível. Conecte sua conta novamente ($1)."
+  },
+  "toastAccountConnected": {
+    "message": "Conta conectada: $1"
+  },
+  "toastOAuthConnectedNoProfile": {
+    "message": "OAuth conectado. Perfil indisponível, mas Gmail autorizado."
+  },
+  "toastConnectFailed": {
+    "message": "Falha ao conectar: $1"
+  },
+  "toastSwitchedToTabAccount": {
+    "message": "Conta da aba ativa selecionada."
+  },
+  "toastSwitchFailed": {
+    "message": "Não foi possível trocar de conta agora."
+  },
+  "unknownError": {
+    "message": "erro desconhecido"
+  },
+  "toastSavedFree": {
+    "message": "Plano grátis salvo: só heurística local."
+  },
+  "toastSavedCloud": {
+    "message": "IA na nuvem salva."
+  },
+  "toastSavedAdvanced": {
+    "message": "Modo avançado salvo."
+  },
+  "errCloudRequired": {
+    "message": "Informe a URL do servidor e o token."
+  },
+  "errInvalidUrl": {
+    "message": "A URL não é válida."
+  },
+  "errInsecureUrl": {
+    "message": "Use HTTPS. HTTP simples só é aceito para localhost e 127.0.0.1."
+  },
+  "errApiKeyRequired": {
+    "message": "Informe a chave de API do provedor."
+  },
+  "errProviderRequired": {
+    "message": "Escolha um provedor."
+  },
+  "toastPermissionDenied": {
+    "message": "O acesso a $1 não foi concedido. As configurações foram salvas, mas a IA só roda depois que você permitir."
+  },
+  "toastAiPermissionMissing": {
+    "message": "Sem acesso ao serviço de IA. Analisando só com heurística."
+  },
+  "toastAiSettingsInvalid": {
+    "message": "As configurações de IA estão incompletas. Analisando só com heurística."
+  },
+  "toastSelectOneSubscription": {
+    "message": "Selecione ao menos uma inscrição."
+  },
+  "toastSelectOneAction": {
+    "message": "Escolha ao menos uma ação: cancelar inscrição ou mover para a lixeira."
+  },
+  "toastMailtoSkipped": {
+    "message": "Alguns cancelamentos por mailto foram ignorados por falta de autorização do Gmail."
+  },
+  "progressUnsubscribing": {
+    "message": "Cancelando $1 inscrições..."
+  },
+  "progressUnsubscribeStep": {
+    "message": "Cancelando: $1/$2 $3"
+  },
+  "progressTrashingCount": {
+    "message": "Movendo $1 e-mails para a lixeira..."
+  },
+  "progressTrashStep": {
+    "message": "Lixeira: $1/$2"
+  },
+  "progressSubsDone": {
+    "message": "Concluído. Cancelados: $1, falhas: $2, mailto ignorados: $3."
+  },
+  "toastSubsDone": {
+    "message": "Processo de inscrições concluído."
+  },
+  "toastSubsFailed": {
+    "message": "Falha ao processar inscrições: $1"
+  },
+  "progressSubsFailed": {
+    "message": "Falha ao processar inscrições."
+  },
+  "toastGmailSessionUnavailable": {
+    "message": "Sessão Gmail indisponível: $1"
+  },
+  "toastConnectBeforeScan": {
+    "message": "Conecte sua conta Gmail antes de analisar."
+  },
+  "btnScanning": {
+    "message": "Analisando..."
+  },
+  "progressNewScan": {
+    "message": "Iniciando nova análise..."
+  },
+  "hintScanHeuristic": {
+    "message": "Analisando apenas com heurística local."
+  },
+  "hintScanCloud": {
+    "message": "Analisando com heurística e IA na nuvem."
+  },
+  "hintScanAdvanced": {
+    "message": "Analisando com heurística e IA (sua chave ou Ollama)."
+  },
+  "progressScanningCategory": {
+    "message": "Escaneando $1..."
+  },
+  "progressCategoryFound": {
+    "message": "$1: $2 encontrados"
+  },
+  "progressFetching": {
+    "message": "$1: buscando $2/$3"
+  },
+  "progressHeuristic": {
+    "message": "$1: análise heurística..."
+  },
+  "progressAiBatch": {
+    "message": "$1: IA classificando lote $2/$3"
+  },
+  "progressScanDone": {
+    "message": "Análise concluída."
+  },
+  "toastScanDoneAi": {
+    "message": "Análise finalizada com IA."
+  },
+  "toastScanDoneHeuristic": {
+    "message": "Análise heurística finalizada."
+  },
+  "toastCancelling": {
+    "message": "Cancelando análise..."
+  },
+  "scanCancelled": {
+    "message": "Análise cancelada."
+  },
+  "toastScanFailed": {
+    "message": "Falha na análise: $1"
+  },
+  "progressScanFailed": {
+    "message": "Análise com falha."
+  },
+  "toastLastScanRestored": {
+    "message": "Última análise restaurada."
+  },
+  "toastHomeRestored": {
+    "message": "Tela inicial restaurada."
+  },
+  "progressRemoving": {
+    "message": "Movendo para a lixeira: $1 / $2"
+  },
+  "progressCleanDone": {
+    "message": "Limpeza concluída."
+  },
+  "toastCleanDone": {
+    "message": "E-mails enviados para a lixeira. Confira itens importantes na Lixeira."
+  },
+  "hintCleanDone": {
+    "message": "Limpeza concluída. Revise descadastros ou volte ao início para nova análise."
+  },
+  "toastCleanFailed": {
+    "message": "Falha na limpeza: $1"
+  },
+  "errTrashFailed": {
+    "message": "Falha ao mover $1 e-mails para a lixeira."
+  },
+  "categoryPromotions": {
+    "message": "Promoções"
+  },
+  "categorySocial": {
+    "message": "Social"
+  },
+  "categoryUpdates": {
+    "message": "Atualizações"
+  },
+  "categoryPrimary": {
+    "message": "Principal"
+  },
+  "badgeToRemove": {
+    "message": "$1 para remover"
+  },
+  "badgeToRemoveTitle": {
+    "message": "Marcados como descartáveis"
+  },
+  "badgeKept": {
+    "message": "$1 mantidos"
+  },
+  "badgeKeptTitle": {
+    "message": "Marcados como úteis"
+  },
+  "methodHeuristic": {
+    "message": "Heurística"
+  },
+  "methodHeuristicCloud": {
+    "message": "Heurística + IA na nuvem"
+  },
+  "methodHeuristicAdvanced": {
+    "message": "Heurística + IA"
+  },
+  "summaryDisposable": {
+    "message": "$1: descartáveis"
+  },
+  "summaryKept": {
+    "message": "$1: úteis"
+  },
+  "summarySubscriptions": {
+    "message": "Assinaturas detectadas (domínios)"
+  }
+}

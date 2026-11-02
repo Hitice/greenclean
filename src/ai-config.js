@@ -1,14 +1,15 @@
 /**
- * Modos de IA: free (só heurística), cloud (API paga GreenClean), advanced (chave própria / Ollama).
+ * AI modes: free (heuristics only), cloud (a GreenClean API server the user hosts),
+ * advanced (the user's own provider key, or a local Ollama). UI labels live in _locales.
  */
 export const PLAN_MODES = {
-  free: { id: 'free', label: 'Gratuito — só heurística (sem chaves)' },
-  cloud: { id: 'cloud', label: 'IA na nuvem (plano pago / token)' },
-  advanced: { id: 'advanced', label: 'Avançado — chave própria ou Ollama local' },
+  free: { id: 'free' },
+  cloud: { id: 'cloud' },
+  advanced: { id: 'advanced' },
 };
 
-/** Base de API de nuvem padrão (Railway produção). O utilizador pode alterar nas definições. */
-export const DEFAULT_CLOUD_API_BASE = 'https://greenclean-production.up.railway.app';
+/** No default cloud server: cloud mode only works with a URL the user enters. */
+export const DEFAULT_CLOUD_API_BASE = '';
 
-/** Link do site para assinatura / obter token (altere no fork). */
-export const CLOUD_SUBSCRIBE_URL = 'https://example.com/assine';
+/** Page where users get a cloud token. Empty hides the link in the settings. */
+export const CLOUD_SUBSCRIBE_URL = '';

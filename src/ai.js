@@ -1,10 +1,11 @@
 /**
- * Engine de classificação por IA: nuvem (pago) ou avançado (BYOK / Ollama).
- * Plano grátis não usa este módulo.
+ * AI classification: cloud (user-hosted GreenClean API) or advanced (own key / Ollama).
+ * The free plan does not use this module.
  */
 
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { PLAN_MODES } from './ai-config.js';
+import { DEFAULT_OLLAMA_URL, parseServiceUrl } from './settings.js';
 
 let config = { planMode: 'free' };
 
@@ -28,7 +29,7 @@ export function initAI(settings = {}) {
   const plan = settings.planMode || PLAN_MODES.free.id;
   config = { ...settings, planMode: plan };
   if (plan !== 'free') {
-    console.log(`IA: plano ${plan} inicializado.`);
+    console.log(`AI: ${plan} mode initialized.`);
   }
 }
 
@@ -70,13 +71,14 @@ function buildPrompt(preparedEmails, includeSnippet) {
   `;
 }
 
-// ─── Núvem (seu backend) ─────────────────────────────────────────
-async function categorizeCloud(preparedEmails, opts) {
-  const base = (config.cloudBaseUrl || '').replace(/\/$/, '');
+// ─── Cloud (user-hosted GreenClean API) ──────────────────────────
+async function categorizeCloud(preparedEmails) {
   const token = config.cloudToken || '';
-  if (!base || !token) {
-    throw new Error('Configure URL da API e token (plano IA na nuvem).');
+  if (!config.cloudBaseUrl || !token) {
+    throw new Error('Cloud mode needs a server URL and a token.');
   }
+  // Rejects non-HTTPS URLs other than localhost, including values saved by older versions.
+  const base = parseServiceUrl(config.cloudBaseUrl).href.replace(/\/$/, '');
   const url = `${base}/v1/categorize`;
   const data = await jsonRequestWithRetry(url, {
     method: 'POST',
@@ -89,7 +91,7 @@ async function categorizeCloud(preparedEmails, opts) {
   return normalizeCategorizeResults(preparedEmails, data);
 }
 
-// ─── Avançado: Gemini / OpenAI / Anthropic / Ollama ─────────────
+// ─── Advanced: Gemini / OpenAI / Anthropic / Ollama ─────────────
 async function generateFromAdvanced(prompt) {
   const { provider, apiKey, model, ollamaUrl } = config;
   switch (provider) {
@@ -98,11 +100,11 @@ async function generateFromAdvanced(prompt) {
     case 'openai':
       return generateOpenAI(prompt, apiKey, model || 'gpt-4o-mini');
     case 'anthropic':
-      return generateAnthropic(prompt, apiKey, model || 'claude-3-haiku-20240307');
+      return generateAnthropic(prompt, apiKey, model || 'claude-haiku-4-5');
     case 'ollama':
-      return generateOllama(prompt, ollamaUrl || 'http://localhost:11434', model || 'llama3');
+      return generateOllama(prompt, parseServiceUrl(ollamaUrl || DEFAULT_OLLAMA_URL).href, model || 'llama3');
     default:
-      throw new Error(`Provedor desconhecido: ${provider}`);
+      throw new Error(`Unknown provider: ${provider}`);
   }
 }
 
@@ -124,7 +126,7 @@ async function generateGemini(prompt, apiKey) {
       throw err;
     }
   }
-  throw new Error('Nenhum modelo Gemini disponível.');
+  throw new Error('No Gemini model available.');
 }
 
 async function generateOpenAI(prompt, apiKey, model) {
@@ -150,6 +152,8 @@ async function generateAnthropic(prompt, apiKey, model) {
       'Content-Type': 'application/json',
       'x-api-key': apiKey,
       'anthropic-version': '2023-06-01',
+      // Required by the Anthropic API for requests that carry a browser Origin (BYOK from the popup).
+      'anthropic-dangerous-direct-browser-access': 'true',
     },
     body: JSON.stringify({
       model,
@@ -157,7 +161,7 @@ async function generateAnthropic(prompt, apiKey, model) {
       messages: [{ role: 'user', content: prompt }],
     }),
   });
-  return data.content[0].text;
+  return data.content?.find((block) => block.type === 'text')?.text || '';
 }
 
 async function generateOllama(prompt, baseUrl, model) {
@@ -173,7 +177,7 @@ async function generateOllama(prompt, baseUrl, model) {
 function maskSensitiveText(text) {
   return String(text || '')
     .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, '[email]')
-    .replace(/\b([a-z0-9-]+\.)+[a-z]{2,}\b/gi, '[dominio]');
+    .replace(/\b([a-z0-9-]+\.)+[a-z]{2,}\b/gi, '[domain]');
 }
 
 function prepareEmailItems(emails, options) {
@@ -204,17 +208,17 @@ function normalizeCategorizeResults(preparedEmails, data) {
 export async function categorizeEmails(emails, options = {}) {
   const plan = config.planMode || 'free';
   if (plan === 'free') {
-    throw new Error('IA desativada no plano grátis.');
+    throw new Error('AI is disabled in the free plan.');
   }
 
   const preparedEmails = prepareEmailItems(emails, options);
 
   if (plan === 'cloud') {
-    return categorizeCloud(preparedEmails, options);
+    return categorizeCloud(preparedEmails);
   }
 
   if (plan !== 'advanced') {
-    throw new Error('Modo de IA inválido.');
+    throw new Error('Invalid AI mode.');
   }
 
   const includeSnippet = options.includeSnippet !== false;
@@ -222,7 +226,7 @@ export async function categorizeEmails(emails, options = {}) {
   const text = await generateFromAdvanced(prompt);
   const jsonMatch = text.match(/\[.*\]/s);
   if (!jsonMatch) {
-    throw new Error('Formato de resposta inválido do modelo.');
+    throw new Error('Invalid model response format.');
   }
   const parsed = JSON.parse(jsonMatch[0]);
   return normalizeCategorizeResults(preparedEmails, parsed);

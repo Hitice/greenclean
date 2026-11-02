@@ -16,6 +16,56 @@ export function parseUnsubscribeHeader(header = '') {
   };
 }
 
+// One recipient, no whitespace, control characters or list separators.
+const MAILTO_ADDRESS = /^[^\s\x00-\x1f\x7f@,;<>"]+@[^\s\x00-\x1f\x7f@,;<>"]+\.[^\s\x00-\x1f\x7f@,;<>"]+$/;
+
+function safeDecode(value) {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}
+
+function utf8ToBase64(text) {
+  let binary = '';
+  for (const byte of new TextEncoder().encode(text)) binary += String.fromCharCode(byte);
+  return btoa(binary);
+}
+
+function encodeHeaderValue(value) {
+  return /^[\x20-\x7e]*$/.test(value) ? value : `=?UTF-8?B?${utf8ToBase64(value)}?=`;
+}
+
+/**
+ * Build the RFC 5322 message for a mailto: unsubscribe.
+ * The mailto value comes from the sender's List-Unsubscribe header, so it is untrusted:
+ * only a single address is accepted and CR/LF are removed from the subject, which
+ * prevents injecting extra headers (Bcc, Cc) or body content into a mail sent from
+ * the user's account.
+ * @param {string} mailto - "unsub@example.com" or "unsub@example.com?subject=Unsubscribe"
+ * @returns {string}
+ */
+export function buildMailtoUnsubscribeMessage(mailto) {
+  const [rawAddress, params = ''] = String(mailto || '').split('?');
+  const address = safeDecode(rawAddress).trim();
+  if (!MAILTO_ADDRESS.test(address)) {
+    throw new Error('Invalid mailto unsubscribe address.');
+  }
+
+  const rawSubject = params.match(/(?:^|&)subject=([^&]*)/i)?.[1] || '';
+  const subject = safeDecode(rawSubject).replace(/[\x00-\x1f\x7f]+/g, ' ').trim() || 'Unsubscribe';
+
+  return [
+    `To: ${address}`,
+    `Subject: ${encodeHeaderValue(subject)}`,
+    'MIME-Version: 1.0',
+    'Content-Type: text/plain; charset=utf-8',
+    '',
+    'Please unsubscribe me from this mailing list.',
+  ].join('\r\n');
+}
+
 /**
  * Send a mailto: unsubscribe via Gmail API (creates and sends an email).
  * @param {string} mailto - The mailto address/value from the header
@@ -26,19 +76,7 @@ export async function sendMailtoUnsubscribe(mailto, token) {
     throw new Error('No Gmail token available for mailto unsubscribe.');
   }
 
-  // Parse: could be "unsub@example.com" or "unsub@example.com?subject=Unsubscribe"
-  const [address, params] = mailto.split('?');
-  const subject = params?.match(/subject=([^&]+)/i)?.[1] || 'Unsubscribe';
-
-  const emailLines = [
-    `To: ${address}`,
-    `Subject: ${decodeURIComponent(subject)}`,
-    `Content-Type: text/plain; charset=utf-8`,
-    ``,
-    `Please unsubscribe me from this mailing list.`,
-  ];
-
-  const raw = btoa(emailLines.join('\r\n'))
+  const raw = utf8ToBase64(buildMailtoUnsubscribeMessage(mailto))
     .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 
   const response = await fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send', {

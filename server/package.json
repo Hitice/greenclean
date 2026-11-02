@@ -3,16 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "type": "module",
-  "description": "Backend de IA para a extensão GreenCloud (plano nuvem)",
+  "description": "Cloud AI API for the GreenClean extension",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "node --watch index.js",
     "start:prod": "cross-env NODE_ENV=production node index.js",
-    "token:dev": "node scripts/issue-dev-token.mjs"
+    "token:dev": "node scripts/issue-dev-token.mjs",
+    "test": "cross-env NODE_ENV=test LOG_LEVEL=silent node --test test/*.test.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

@@ -1,5 +1,5 @@
 /**
- * Ponto de entrada — API profissional GreenClean (IA na nuvem)
+ * Entry point: GreenClean cloud AI API.
  */
 import 'dotenv/config';
 import { createApp } from './src/app.js';
@@ -10,19 +10,19 @@ const app = createApp();
 const server = app.listen(config.PORT, () => {
   logger.info(
     { port: config.PORT, env: config.NODE_ENV },
-    'API escutando',
+    'API listening',
   );
 });
 
 if (!config.hasAnthropic) {
-  logger.warn('ANTHROPIC_API_KEY ausente — /ready e classificação falham.');
+  logger.warn('ANTHROPIC_API_KEY is missing: /ready and /v1/categorize return 503.');
 }
 if (!config.hasJwt && config.apiTokens.length === 0) {
-  logger.warn('Nenhum método de auth: defina JWT_SECRET (produção) ou API_TOKENS (dev).');
+  logger.warn('No auth method configured: set JWT_SECRET or API_TOKENS.');
 }
 
 function shutdown(signal) {
-  logger.info({ signal }, 'encerrando');
+  logger.info({ signal }, 'shutting down');
   server.close(() => {
     process.exit(0);
   });

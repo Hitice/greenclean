@@ -11,7 +11,7 @@
   --text-main:      #111827;
   --text-secondary: #374151;
   --text-muted:     #6b7280;
-  --font:           'Outfit', sans-serif;
+  --font:           'Outfit Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --radius:         10px;
   --transition:     all 0.18s ease;
   --shadow:         0 1px 4px rgba(0,0,0,0.07);
@@ -259,6 +259,8 @@ button {
   transition: var(--transition);
 }
 
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
 .btn-primary   { background: var(--primary); color: #fff; }
 .btn-primary:hover { background: var(--primary-hover); }
 
@@ -442,7 +444,8 @@ footer p {
   padding: 22px;
   width: 90%;
   max-width: 360px;
-  max-height: 540px;
+  max-height: min(540px, calc(100vh - 24px));
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -567,6 +570,7 @@ input:focus {
 .sub-item input[type="checkbox"] {
   width: 15px;
   height: 15px;
+  accent-color: var(--primary);
   cursor: pointer;
   padding: 0;
   flex-shrink: 0;
@@ -588,6 +592,40 @@ input:focus {
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 140px;
+}
+
+.sub-item .sub-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.sub-item .sub-text .sub-subject { max-width: none; }
+
+/* Trash preview inside modal */
+.preview-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.preview-count {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.preview-list { max-height: 260px; }
+
+.preview-item { cursor: pointer; }
+
+.preview-category {
+  flex-shrink: 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg);
+  border-radius: 999px;
+  padding: 2px 8px;
 }
 
 /* ─── Utility ─────────────────────────────────────── */

@@ -7,7 +7,8 @@ const LOAD_TIMEOUT_MS = 8000;
 
 /**
  * Opens a URL in a background tab, waits for it to load, then closes it.
- * Handles one-click HTTP unsubscribe pages (RFC 8058).
+ * This is a plain GET visit: it works for links that unsubscribe on load, not for
+ * pages that require a click or for RFC 8058 one-click POST endpoints.
  */
 async function visitAndClose(url) {
   return new Promise((resolve) => {

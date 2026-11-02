@@ -2,6 +2,8 @@
  * Gmail API Wrapper for Chrome Extension
  */
 
+import { t } from './i18n.js';
+
 const RETRYABLE_STATUS = new Set([408, 429, 500, 502, 503, 504]);
 let lastAuthError = '';
 
@@ -38,8 +40,7 @@ async function getToken() {
 async function requireToken() {
   const token = await getToken();
   if (!token) {
-    const reason = lastAuthError ? ` (${lastAuthError})` : '';
-    throw new Error(`Authentication token unavailable. Please reconnect your account${reason}.`);
+    throw new Error(t('errAuthTokenUnavailable', [lastAuthError || '-']));
   }
   return token;
 }
@@ -71,12 +72,28 @@ export async function login() {
   });
 }
 
+/**
+ * Revoke a token at Google (RFC 7009 endpoint, token in the form body, not the URL).
+ * Best effort: the account switch continues even if revocation fails.
+ */
+export async function revokeToken(token) {
+  try {
+    const response = await fetch('https://oauth2.googleapis.com/revoke', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ token }),
+    });
+    return response.ok;
+  } catch {
+    return false;
+  }
+}
+
 export async function switchAccount() {
   // Revoke cached token and force account picker
   const cached = await new Promise(r => chrome.identity.getAuthToken({ interactive: false }, r));
   if (cached) {
-    // Revoke from Google servers too, not just local cache
-    await fetch(`https://accounts.google.com/o/oauth2/revoke?token=${cached}`);
+    await revokeToken(cached);
     await new Promise(r => chrome.identity.removeCachedAuthToken({ token: cached }, r));
   }
   return login();
@@ -218,6 +235,6 @@ export async function trashEmailsBatch(ids, onProgress) {
   }
 
   if (failed > 0) {
-    throw new Error(`Falha ao mover ${failed} e-mails para a lixeira.`);
+    throw new Error(t('errTrashFailed', [String(failed)]));
   }
 }

@@ -1,27 +1,25 @@
 {
   "manifest_version": 3,
-  "name": "GreenClean",
+  "name": "__MSG_extName__",
   "version": "1.0.3",
-  "description": "Limpe sua caixa de entrada do Gmail com mais controle.",
+  "description": "__MSG_extDescription__",
+  "default_locale": "en",
   "permissions": [
     "identity",
-    "storage",
-    "tabs"
+    "storage"
   ],
   "host_permissions": [
     "https://gmail.googleapis.com/*",
     "https://www.googleapis.com/*",
-    "https://accounts.google.com/*",
-    "https://api.openai.com/*",
-    "https://api.anthropic.com/*",
-    "https://generativelanguage.googleapis.com/*",
-    "http://localhost:11434/*",
-    "http://127.0.0.1:11434/*"
+    "https://oauth2.googleapis.com/*"
   ],
   "optional_host_permissions": [
+    "https://generativelanguage.googleapis.com/*",
+    "https://api.openai.com/*",
+    "https://api.anthropic.com/*",
     "https://*/*",
-    "http://127.0.0.1/*",
-    "http://localhost/*"
+    "http://localhost/*",
+    "http://127.0.0.1/*"
   ],
   "background": {
     "service_worker": "background.js"

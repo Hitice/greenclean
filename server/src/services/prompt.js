@@ -19,11 +19,11 @@ export function parseModelJsonArray(text, allowedIds) {
   const set = new Set(allowedIds);
   const match = text.match(/\[.*\]/s);
   if (!match) {
-    throw new Error('Resposta do modelo sem JSON array');
+    throw new Error('Model response has no JSON array');
   }
   const arr = JSON.parse(match[0]);
   const allowCat = new Set(['Important', 'Neutral', 'Disposable']);
-  if (!Array.isArray(arr)) throw new Error('JSON inválido');
+  if (!Array.isArray(arr)) throw new Error('Model response is not a JSON array');
   return arr
     .filter(
       (x) =>

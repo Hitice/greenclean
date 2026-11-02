@@ -1,0 +1,440 @@
+{
+  "extName": {
+    "message": "GreenClean"
+  },
+  "extDescription": {
+    "message": "Review and clean up your Gmail inbox: disposable mail, subscriptions and unsubscribe, with optional AI."
+  },
+  "btnSettings": {
+    "message": "Settings"
+  },
+  "btnConnect": {
+    "message": "Connect"
+  },
+  "switchToAccount": {
+    "message": "Switch to $1?"
+  },
+  "tabAccountDesc": {
+    "message": "We detected this account in the current tab."
+  },
+  "btnSwitchAccount": {
+    "message": "Switch account"
+  },
+  "hintConnectToStart": {
+    "message": "Connect your account and click Analyze inbox to start."
+  },
+  "statTotal": {
+    "message": "Total in inbox"
+  },
+  "statToDelete": {
+    "message": "To remove"
+  },
+  "btnScan": {
+    "message": "Analyze inbox"
+  },
+  "btnReviewTrash": {
+    "message": "Review and trash"
+  },
+  "btnCancelScan": {
+    "message": "Cancel analysis"
+  },
+  "btnBackHome": {
+    "message": "Back to start"
+  },
+  "btnRescan": {
+    "message": "Analyze again"
+  },
+  "progressInit": {
+    "message": "Starting..."
+  },
+  "subscriptionsDetected": {
+    "message": "$1 subscriptions detected"
+  },
+  "subsAlertDesc": {
+    "message": "Review them and unsubscribe from mailing lists."
+  },
+  "btnViewList": {
+    "message": "View list"
+  },
+  "thCategory": {
+    "message": "Category"
+  },
+  "thCount": {
+    "message": "Count"
+  },
+  "footer": {
+    "message": "GreenClean · Free software (AGPL-3.0)"
+  },
+  "settingsTitle": {
+    "message": "Plan and AI"
+  },
+  "planModeLabel": {
+    "message": "How do you want to use the extension"
+  },
+  "planFree": {
+    "message": "Free: heuristics only (local, no keys)"
+  },
+  "planCloud": {
+    "message": "Cloud AI: your own GreenClean server"
+  },
+  "planAdvanced": {
+    "message": "Advanced: your own API key or Ollama"
+  },
+  "cloudPanelDesc": {
+    "message": "Classification runs on a GreenClean API server that you host (see the README). Enter its URL and the token it issued."
+  },
+  "cloudUrlLabel": {
+    "message": "Server base URL (HTTPS)"
+  },
+  "cloudUrlPlaceholder": {
+    "message": "https://greenclean.example.com"
+  },
+  "cloudTokenLabel": {
+    "message": "Access token (Bearer)"
+  },
+  "cloudTokenPlaceholder": {
+    "message": "Token issued by your server"
+  },
+  "cloudSubscribe": {
+    "message": "Get access"
+  },
+  "advancedPanelDesc": {
+    "message": "Your key is stored only in this browser and sent only to the provider you choose."
+  },
+  "providerLabel": {
+    "message": "Provider"
+  },
+  "apiKeyLabel": {
+    "message": "API key"
+  },
+  "apiKeyPlaceholder": {
+    "message": "Provider key"
+  },
+  "modelLabel": {
+    "message": "Model"
+  },
+  "optionalHint": {
+    "message": "(optional)"
+  },
+  "modelPlaceholder": {
+    "message": "e.g. gpt-4o-mini, llama3"
+  },
+  "ollamaUrlLabel": {
+    "message": "Ollama URL"
+  },
+  "aiSendSnippet": {
+    "message": "Send the snippet to the AI, when enabled"
+  },
+  "aiMaskSensitive": {
+    "message": "Mask email addresses and domains before sending"
+  },
+  "settingsHintFree": {
+    "message": "Free plan: everything runs on your computer, no API keys."
+  },
+  "settingsHintCloud": {
+    "message": "Subject and snippet of unclassified messages are sent to the server you configured."
+  },
+  "settingsHintAdvanced": {
+    "message": "Subject and snippet of unclassified messages are sent to the selected provider."
+  },
+  "btnCancel": {
+    "message": "Cancel"
+  },
+  "btnSave": {
+    "message": "Save"
+  },
+  "subsTitle": {
+    "message": "Mailing-list subscriptions"
+  },
+  "subsDesc": {
+    "message": "Select senders to unsubscribe from and move to Trash. HTTP links are opened in background tabs; mailto links are sent through Gmail."
+  },
+  "subsSelectAll": {
+    "message": "Select all"
+  },
+  "subsUseGeneralUnsub": {
+    "message": "Unsubscribe (HTTP and mailto)"
+  },
+  "subsTrashAfter": {
+    "message": "Move the selected messages to Trash"
+  },
+  "btnClose": {
+    "message": "Close"
+  },
+  "btnTrashSelected": {
+    "message": "Move to Trash"
+  },
+  "btnDone": {
+    "message": "Done"
+  },
+  "unknownSender": {
+    "message": "(unknown sender)"
+  },
+  "unidentifiedSenders": {
+    "message": "Unidentified senders"
+  },
+  "previewTitle": {
+    "message": "Review before moving to Trash"
+  },
+  "previewDesc": {
+    "message": "These messages will be moved to Gmail Trash, not deleted permanently. Gmail empties Trash after 30 days. Uncheck anything you want to keep."
+  },
+  "previewSelectAll": {
+    "message": "Select all"
+  },
+  "previewCount": {
+    "message": "$1 of $2 selected"
+  },
+  "btnConfirmTrash": {
+    "message": "Move $1 to Trash"
+  },
+  "previewNoDetails": {
+    "message": "(details not saved)"
+  },
+  "noSubject": {
+    "message": "(no subject)"
+  },
+  "accountConnectedNoProfile": {
+    "message": "connected"
+  },
+  "accountConnectedNoProfileTitle": {
+    "message": "Connected through OAuth. Profile unavailable, Gmail access granted."
+  },
+  "hintConnectedNoProfile": {
+    "message": "Connected without a visible profile. You can analyze the inbox."
+  },
+  "connectTitle": {
+    "message": "Click to connect your Gmail account"
+  },
+  "hintConnectToEnable": {
+    "message": "Connect your account to enable the analysis."
+  },
+  "accountTitle": {
+    "message": "Connected as $1. Click to switch accounts."
+  },
+  "hintReady": {
+    "message": "Ready to analyze. Counters appear when the scan starts."
+  },
+  "hintAccountCheckFailed": {
+    "message": "Could not check the account. Try connecting again."
+  },
+  "btnSwitching": {
+    "message": "Switching..."
+  },
+  "btnConnecting": {
+    "message": "Connecting..."
+  },
+  "errOAuthNoAccess": {
+    "message": "OAuth succeeded, but Gmail did not grant access."
+  },
+  "errAuthTokenUnavailable": {
+    "message": "Authentication token unavailable. Reconnect your account ($1)."
+  },
+  "toastAccountConnected": {
+    "message": "Account connected: $1"
+  },
+  "toastOAuthConnectedNoProfile": {
+    "message": "OAuth connected. Profile unavailable, Gmail access granted."
+  },
+  "toastConnectFailed": {
+    "message": "Could not connect: $1"
+  },
+  "toastSwitchedToTabAccount": {
+    "message": "Switched to the active tab's account."
+  },
+  "toastSwitchFailed": {
+    "message": "Could not switch accounts right now."
+  },
+  "unknownError": {
+    "message": "unknown error"
+  },
+  "toastSavedFree": {
+    "message": "Free plan saved: local heuristics only."
+  },
+  "toastSavedCloud": {
+    "message": "Cloud AI saved."
+  },
+  "toastSavedAdvanced": {
+    "message": "Advanced mode saved."
+  },
+  "errCloudRequired": {
+    "message": "Enter the server URL and the token."
+  },
+  "errInvalidUrl": {
+    "message": "The URL is not valid."
+  },
+  "errInsecureUrl": {
+    "message": "Use HTTPS. Plain HTTP is accepted only for localhost and 127.0.0.1."
+  },
+  "errApiKeyRequired": {
+    "message": "Enter the provider API key."
+  },
+  "errProviderRequired": {
+    "message": "Choose a provider."
+  },
+  "toastPermissionDenied": {
+    "message": "Access to $1 was not granted. Settings were saved, but AI will not run until you allow it."
+  },
+  "toastAiPermissionMissing": {
+    "message": "No access to the AI service. Analyzing with heuristics only."
+  },
+  "toastAiSettingsInvalid": {
+    "message": "AI settings are incomplete. Analyzing with heuristics only."
+  },
+  "toastSelectOneSubscription": {
+    "message": "Select at least one subscription."
+  },
+  "toastSelectOneAction": {
+    "message": "Choose at least one action: unsubscribe or move to Trash."
+  },
+  "toastMailtoSkipped": {
+    "message": "Some mailto unsubscribes were skipped because Gmail authorization was not available."
+  },
+  "progressUnsubscribing": {
+    "message": "Unsubscribing from $1 lists..."
+  },
+  "progressUnsubscribeStep": {
+    "message": "Unsubscribing: $1/$2 $3"
+  },
+  "progressTrashingCount": {
+    "message": "Moving $1 messages to Trash..."
+  },
+  "progressTrashStep": {
+    "message": "Trash: $1/$2"
+  },
+  "progressSubsDone": {
+    "message": "Done. Unsubscribed: $1, failed: $2, mailto skipped: $3."
+  },
+  "toastSubsDone": {
+    "message": "Subscriptions processed."
+  },
+  "toastSubsFailed": {
+    "message": "Could not process subscriptions: $1"
+  },
+  "progressSubsFailed": {
+    "message": "Could not process subscriptions."
+  },
+  "toastGmailSessionUnavailable": {
+    "message": "Gmail session unavailable: $1"
+  },
+  "toastConnectBeforeScan": {
+    "message": "Connect your Gmail account before analyzing."
+  },
+  "btnScanning": {
+    "message": "Analyzing..."
+  },
+  "progressNewScan": {
+    "message": "Starting a new analysis..."
+  },
+  "hintScanHeuristic": {
+    "message": "Analyzing with local heuristics only."
+  },
+  "hintScanCloud": {
+    "message": "Analyzing with heuristics and cloud AI."
+  },
+  "hintScanAdvanced": {
+    "message": "Analyzing with heuristics and AI (your key or Ollama)."
+  },
+  "progressScanningCategory": {
+    "message": "Scanning $1..."
+  },
+  "progressCategoryFound": {
+    "message": "$1: $2 found"
+  },
+  "progressFetching": {
+    "message": "$1: fetching $2/$3"
+  },
+  "progressHeuristic": {
+    "message": "$1: heuristic analysis..."
+  },
+  "progressAiBatch": {
+    "message": "$1: AI classifying batch $2/$3"
+  },
+  "progressScanDone": {
+    "message": "Analysis complete."
+  },
+  "toastScanDoneAi": {
+    "message": "Analysis finished with AI."
+  },
+  "toastScanDoneHeuristic": {
+    "message": "Heuristic analysis finished."
+  },
+  "toastCancelling": {
+    "message": "Cancelling analysis..."
+  },
+  "scanCancelled": {
+    "message": "Analysis cancelled."
+  },
+  "toastScanFailed": {
+    "message": "Analysis failed: $1"
+  },
+  "progressScanFailed": {
+    "message": "Analysis failed."
+  },
+  "toastLastScanRestored": {
+    "message": "Last analysis restored."
+  },
+  "toastHomeRestored": {
+    "message": "Start screen restored."
+  },
+  "progressRemoving": {
+    "message": "Moving to Trash: $1 / $2"
+  },
+  "progressCleanDone": {
+    "message": "Cleanup complete."
+  },
+  "toastCleanDone": {
+    "message": "Messages moved to Trash. Check Trash for anything important."
+  },
+  "hintCleanDone": {
+    "message": "Cleanup complete. Review subscriptions or go back to start a new analysis."
+  },
+  "toastCleanFailed": {
+    "message": "Cleanup failed: $1"
+  },
+  "errTrashFailed": {
+    "message": "Could not move $1 messages to Trash."
+  },
+  "categoryPromotions": {
+    "message": "Promotions"
+  },
+  "categorySocial": {
+    "message": "Social"
+  },
+  "categoryUpdates": {
+    "message": "Updates"
+  },
+  "categoryPrimary": {
+    "message": "Primary"
+  },
+  "badgeToRemove": {
+    "message": "$1 to remove"
+  },
+  "badgeToRemoveTitle": {
+    "message": "Marked as disposable"
+  },
+  "badgeKept": {
+    "message": "$1 kept"
+  },
+  "badgeKeptTitle": {
+    "message": "Marked as useful"
+  },
+  "methodHeuristic": {
+    "message": "Heuristics"
+  },
+  "methodHeuristicCloud": {
+    "message": "Heuristics + cloud AI"
+  },
+  "methodHeuristicAdvanced": {
+    "message": "Heuristics + AI"
+  },
+  "summaryDisposable": {
+    "message": "$1: disposable"
+  },
+  "summaryKept": {
+    "message": "$1: kept"
+  },
+  "summarySubscriptions": {
+    "message": "Subscriptions detected (domains)"
+  }
+}

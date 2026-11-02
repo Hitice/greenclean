@@ -7,10 +7,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, '../.env') });
 
 const secret = process.env.JWT_SECRET;
-if (!secret || secret.length < 8) {
-  console.error(
-    'Defina JWT_SECRET (mín. 8 caracteres) no ficheiro .env ou no ambiente.',
-  );
+if (!secret || secret.length < 32) {
+  console.error('Set JWT_SECRET (at least 32 characters) in .env or in the environment.');
   process.exit(1);
 }
 
@@ -19,7 +17,7 @@ const plan = process.argv[3] || 'cloud';
 const days = process.argv[4] ? parseInt(process.argv[4], 10) : 30;
 
 if (Number.isNaN(days) || days < 1) {
-  console.error('Dias de expiração inválidos (use um inteiro >= 1).');
+  console.error('Invalid expiry in days (use an integer >= 1).');
   process.exit(1);
 }
 

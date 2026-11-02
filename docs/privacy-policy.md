@@ -1,64 +1,67 @@
-# Política de Privacidade — GreenClean
+# GreenClean Privacy Policy
 
-**Última actualização:** 22 de Abril de 2026  
+**Last updated:** November 2, 2026
 
-Esta política descreve como a extensão **GreenClean** (“nós”, “a extensão”) trata dados quando utilizas o produto no **Google Chrome** em conjunto com o **Gmail**.
+This policy describes how the **GreenClean** extension ("we", "the extension") handles data when you use it in **Google Chrome** with **Gmail**.
 
-## Responsável pelo tratamento
+## Data controller
 
-**Pedro Henrique Fernandes**  
-**Contacto (privacidade e questões gerais):** [adm.nuvem@protonmail.com](mailto:adm.nuvem@protonmail.com)  
-**Contacto alternativo:** [pedromuska@gmail.com](mailto:pedromuska@gmail.com)
+**Pedro Henrique Fernandes**
+**Contact (privacy and general questions):** [adm.nuvem@protonmail.com](mailto:adm.nuvem@protonmail.com)
+**Alternative contact:** [pedromuska@gmail.com](mailto:pedromuska@gmail.com)
 
-O endereço usado na **Chrome Web Store** (ficha do programador / contacto do item) deve estar **verificado** pelo Google; recomenda-se alinhar esse e-mail com um dos contactos acima para os utilizadores saberem a quem escrever.
+Source code: public repository **Hitice/greenclean** on GitHub.
 
-Código-fonte do projecto: repositório público **Hitice/greenclean** no GitHub.
+## Purpose
 
-## Finalidade
+The extension has a **single purpose**: helping you **organize and clean up your Gmail inbox**, with **human review** before messages are moved to Trash or subscriptions are cancelled. Your data is not used for advertising, credit scoring or anything unrelated to this purpose.
 
-A extensão tem um **único propósito**: ajudar a **organizar e limpar a caixa de entrada do Gmail**, com **revisão humana** antes de eliminar ou cancelar subscrições. Não utilizamos os teus dados para publicidade, perfis de crédito ou fins não relacionados com esta finalidade.
+## Data involved
 
-## Que dados são envolvidos
+- **Google account and Gmail:** with your authorization (**OAuth**, scope `gmail.modify`), the extension uses the Gmail API to list messages, read their metadata (subject, sender, `List-Unsubscribe` header and Gmail's snippet), move the messages you confirm to Trash, and send the unsubscribe emails you request. Message bodies are not downloaded. Nothing is deleted permanently.
+- **Classification:** heuristic rules run **on your device**. If you turn on AI classification, only the messages the rules did not classify are sent, and for each one only the Gmail message ID, the subject (up to 180 characters) and, unless you turn it off, the snippet (up to 200 characters). By default email addresses and domain names are masked before sending. The sender and the message body are never sent. They go to one of:
+  - the **AI provider** you choose with your own API key (Google Gemini, OpenAI, Anthropic), or a local Ollama;
+  - a **GreenClean API server whose address you enter yourself**. The extension has no default server; the operator of the server you configure (you, or whoever runs it) receives these requests.
+- **Settings:** your preferences, API keys and cloud token are stored in the extension's `localStorage` on your device. The result of the last analysis (message IDs; sender and subject of the messages listed for review; sender, subject, snippet and unsubscribe header of detected subscriptions) is stored in `chrome.storage.local`. None of this is synced across devices or sent to us.
 
-- **Conta Google / Gmail:** com a tua autorização (**OAuth**), acedemos à API do Gmail para listar e alterar mensagens **conforme as acções que confirmas** na interface da extensão (âmbito `gmail.modify`).
-- **Conteúdo e metadados de correio:** assunto, remetente, excertos ou corpo de mensagens processados **no teu dispositivo** e, se activares classificação por **IA**, os fragmentos necessários podem ser enviados ao **fornecedor de IA** que escolheres (ex.: Google, OpenAI, Anthropic) ou a um **serviço na nuvem** configurado por ti (ex.: backend próprio), apenas para obter sugestões de classificação.
-- **Definições da extensão:** preferências (modo gratuito, nuvem ou avançado, URLs de API, modelos) e credenciais de sessão **guardadas localmente** no Chrome (`chrome.storage`), no teu equipamento.
+## Legal basis and consent
 
-## Base legal e consentimento
+Processing is based on your **consent** (installing the extension and granting Chrome and Gmail permissions) and on **performing the service** you request. Access to an AI provider or to a cloud server is requested from Chrome only when you select it. You can revoke the extension's access in your Google account settings and in `chrome://extensions`.
 
-O tratamento assenta no **consentimento** (instalação e permissões do Chrome / Gmail) e na **execução do serviço** que solicitas ao usar a extensão. Podes revogar o acesso à conta Google nas definições da tua conta Google.
+## Sharing with third parties
 
-## Partilha com terceiros
+- **Google (Gmail and OAuth):** under Google's applicable policies.
+- **AI providers** (advanced mode only): data sent is handled under that provider's policies.
+- **Cloud server** (cloud mode only, at the address you enter): its operator processes the requests the extension sends.
+- **Unsubscribe actions** you run: the sender's unsubscribe page sees a visit from your browser, and a `mailto:` unsubscribe is an email sent from your account. Both tell the sender that the address is active.
+- We **do not sell** personal data and do not share it for marketing.
 
-- **Google (Gmail / OAuth):** conforme as políticas Google aplicáveis.
-- **Fornecedores de IA** (se activares modo avançado): os dados enviados tratam-se segundo as políticas desse fornecedor.
-- **Serviço na nuvem** (se activares modo nuvem e indicares um URL): o operador desse serviço pode processar os pedidos que a extensão enviar (ex.: texto necessário para categorização).
-- **Não vendemos** os teus dados pessoais nem os cedemos a terceiros para fins de marketing.
+The extension makes no analytics or telemetry requests, and its interface loads no resources from third-party servers.
 
-## Conservação
+## Retention
 
-Os dados em cache ou definições mantêm-se **no dispositivo** até apagares a extensão, limpares o armazenamento do Chrome ou revogares o acesso. Os fornecedores externos aplicam as **suas** políticas de retenção aos pedidos que recebem.
+Cached results and settings stay **on your device** until you start a new analysis, return to the start screen, clear Chrome's storage or remove the extension. External providers apply **their own** retention policies to the requests they receive.
 
-## Segurança
+## Security
 
-Utilizamos as APIs e armazenamento seguros do Chrome; as chaves e tokens sensíveis devem ser **introduzidos por ti** e são armazenados localmente quando aplicável. Nunca te pedimos a palavra-passe da conta Google fora do fluxo oficial OAuth.
+The extension uses Chrome's identity API and local storage; keys and tokens are entered by you and stay on your device. Connections to cloud servers must use HTTPS, except to `localhost` and `127.0.0.1`. You are never asked for your Google password outside the official OAuth flow.
 
-## Os teus direitos (RGPD / utilizadores na UE)
+## Your rights (GDPR and users in the EU)
 
-Dependendo do caso, podes ter direito a **acesso**, **rectificação**, **apagamento**, **limitação** ou **oposição** ao tratamento, e **reclamação** junto de uma autoridade de protecção de dados. Para pedidos relacionados apenas com o que a extensão guarda localmente, apagar dados do Chrome ou a extensão costuma ser o meio mais directo. Para tratamentos por Google ou por fornecedores de IA, deves contactar essas entidades também.
+Depending on your situation, you may have the right to **access**, **rectify**, **erase**, **restrict** or **object** to processing, and to **lodge a complaint** with a data protection authority. For data the extension keeps locally, clearing Chrome's data or removing the extension is the most direct way. For processing by Google, AI providers or the operator of a cloud server, contact them as well.
 
-## Menores
+## Children
 
-A extensão não se dirige a menores de 16 anos de forma específica. O Gmail é fornecido pelo Google segundo as suas regras.
+The extension is not directed at children under 16. Gmail is provided by Google under its own terms.
 
-## Alterações
+## Changes
 
-Podemos actualizar esta política quando a funcionalidade ou a lei mudar. A data no topo indica a versão em vigor. Alterações relevantes devem reflectir-se na Chrome Web Store e, quando possível, no repositório público.
+This policy may be updated when the features or the law change. The date at the top shows the current version. Relevant changes will be reflected in the Chrome Web Store listing and in the public repository.
 
-## Contacto
+## Contact
 
-Para questões de privacidade ou exercício de direitos: **adm.nuvem@protonmail.com** ou **pedromuska@gmail.com** (resposta no prazo habitual de até 30 dias úteis, conforme complexidade do pedido).
+For privacy questions or to exercise your rights: **adm.nuvem@protonmail.com** or **pedromuska@gmail.com**. Requests are answered within 30 days, depending on their complexity.
 
 ---
 
-*Esta política aplica-se à extensão GreenClean. O código está licenciado em AGPL-3.0; licença e privacidade são assuntos distintos.*
+*This policy applies to the GreenClean extension. The code is licensed under AGPL-3.0; licensing and privacy are separate matters.*

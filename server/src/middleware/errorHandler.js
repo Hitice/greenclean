@@ -11,7 +11,7 @@ export function errorHandler(err, req, res, _next) {
     );
   }
   const body = {
-    error: isProd && status === 500 ? 'Erro interno' : err.message || 'Erro',
+    error: isProd && status >= 500 ? 'Internal error' : err.message || 'Error',
     requestId: req.id,
   };
   if (!isProd && err.stack) {
